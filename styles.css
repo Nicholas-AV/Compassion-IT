@@ -204,6 +204,189 @@ body {
     width: 100%;
 }
 
+/* Help Path Styles */
+.help-path {
+    background: #f8f9fa;
+    border-radius: 0;
+    padding: 4rem 5%;
+    margin: 0 -2rem 4rem -2rem;
+    width: calc(100% + 4rem);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+}
+
+.help-path-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.help-path-header h2 {
+    color: #333;
+    font-size: 2.2rem;
+    margin-bottom: 1rem;
+}
+
+.help-path-header p {
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.path-container {
+    position: relative;
+    min-height: 400px;
+}
+
+.path-step {
+    display: none;
+    animation: fadeInSlide 0.5s ease;
+}
+
+.path-step.active {
+    display: block;
+}
+
+.path-step h3 {
+    text-align: center;
+    color: #333;
+    font-size: 1.8rem;
+    margin-bottom: 2rem;
+}
+
+.option-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.path-option {
+    background: white;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+.path-option:hover {
+    transform: translateY(-5px);
+    border-color: #dc143c;
+    box-shadow: 0 8px 25px rgba(220, 20, 60, 0.15);
+}
+
+.option-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.path-option h4 {
+    color: #333;
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+}
+
+.path-option p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+.back-button {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 25px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin-top: 1rem;
+}
+
+.back-button:hover {
+    background: #5a6268;
+    transform: translateX(-3px);
+}
+
+.recommendation-container {
+    display: flex;
+    justify-content: center;
+}
+
+.recommendation-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 15px;
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    border: 2px solid #dc143c;
+}
+
+.recommendation-card h4 {
+    color: #dc143c;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.recommendation-card p {
+    color: #666;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.primary-btn, .secondary-btn {
+    padding: 1rem 2rem;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.primary-btn {
+    background: #dc143c;
+    color: white;
+    box-shadow: 0 4px 15px rgba(220, 20, 60, 0.3);
+}
+
+.primary-btn:hover {
+    background: #b91c32;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(220, 20, 60, 0.4);
+}
+
+.secondary-btn {
+    background: transparent;
+    color: #dc143c;
+    border: 2px solid #dc143c;
+}
+
+.secondary-btn:hover {
+    background: #dc143c;
+    color: white;
+    transform: translateY(-2px);
+}
+
+@keyframes fadeInSlide {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .services {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -383,6 +566,44 @@ body {
 
     .main-content {
         padding: 2rem 1rem;
+    }
+
+    .help-path {
+        padding: 3rem 3%;
+        margin: 0 -1rem 3rem -1rem;
+        width: calc(100% + 2rem);
+        border-radius: 0;
+    }
+
+    .help-path-header h2 {
+        font-size: 1.8rem;
+    }
+
+    .path-step h3 {
+        font-size: 1.5rem;
+    }
+
+    .option-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .path-option {
+        padding: 1.5rem;
+    }
+
+    .recommendation-card {
+        padding: 2rem 1.5rem;
+    }
+
+    .action-buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .primary-btn, .secondary-btn {
+        width: 100%;
+        max-width: 250px;
     }
 
     .about {

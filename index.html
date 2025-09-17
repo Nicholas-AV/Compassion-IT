@@ -52,7 +52,191 @@
 
     <!-- Main Content -->
     <main class="main-content">
+        <!-- Help Path Section -->
+        <section class="help-path">
+            <div class="help-path-header">
+                <h2>Find the Right Help for You</h2>
+                <p>Tell us what you need help with and we'll guide you to the right solution</p>
+            </div>
+            
+            <div class="path-container" id="pathContainer">
+                <!-- Step 1: Main Categories -->
+                <div class="path-step active" id="step1">
+                    <h3>What do you need help with?</h3>
+                    <div class="option-grid">
+                        <div class="path-option" data-step="2" data-category="device">
+                            <div class="option-icon">💻</div>
+                            <h4>Device Issues</h4>
+                            <p>Problems with computers, phones, tablets</p>
+                        </div>
+                        <div class="path-option" data-step="2" data-category="network">
+                            <div class="option-icon">🌐</div>
+                            <h4>Network & Internet</h4>
+                            <p>WiFi, connectivity, speed issues</p>
+                        </div>
+                        <div class="path-option" data-step="2" data-category="software">
+                            <div class="option-icon">⚙️</div>
+                            <h4>Software & Apps</h4>
+                            <p>Installation, crashes, updates</p>
+                        </div>
+                        <div class="path-option" data-step="2" data-category="security">
+                            <div class="option-icon">🔐</div>
+                            <h4>Security Concerns</h4>
+                            <p>Viruses, data protection, passwords</p>
+                        </div>
+                    </div>
+                </div>
 
+                <!-- Step 2: Device Categories -->
+                <div class="path-step" id="step2-device">
+                    <h3>Which device are you having trouble with?</h3>
+                    <div class="option-grid">
+                        <div class="path-option" data-step="3" data-subcategory="phone">
+                            <div class="option-icon">📱</div>
+                            <h4>Phone/Mobile</h4>
+                            <p>Smartphones, mobile issues</p>
+                        </div>
+                        <div class="path-option" data-step="3" data-subcategory="laptop">
+                            <div class="option-icon">💻</div>
+                            <h4>Laptop</h4>
+                            <p>Portable computers</p>
+                        </div>
+                        <div class="path-option" data-step="3" data-subcategory="desktop">
+                            <div class="option-icon">🖥️</div>
+                            <h4>Desktop</h4>
+                            <p>Desktop computers</p>
+                        </div>
+                        <div class="path-option" data-step="3" data-subcategory="tablet">
+                            <div class="option-icon">📋</div>
+                            <h4>Tablet</h4>
+                            <p>iPads, Android tablets</p>
+                        </div>
+                    </div>
+                    <button class="back-button" data-back="1">← Back</button>
+                </div>
+
+                <!-- Step 2: Network Categories -->
+                <div class="path-step" id="step2-network">
+                    <h3>What type of network issue?</h3>
+                    <div class="option-grid">
+                        <div class="path-option" data-step="3" data-subcategory="wifi">
+                            <div class="option-icon">📶</div>
+                            <h4>WiFi Problems</h4>
+                            <p>Can't connect, slow speeds</p>
+                        </div>
+                        <div class="path-option" data-step="3" data-subcategory="ethernet">
+                            <div class="option-icon">🔌</div>
+                            <h4>Wired Connection</h4>
+                            <p>Ethernet, cable issues</p>
+                        </div>
+                        <div class="path-option" data-step="3" data-subcategory="router">
+                            <div class="option-icon">📡</div>
+                            <h4>Router/Modem</h4>
+                            <p>Equipment not working</p>
+                        </div>
+                        <div class="path-option" data-step="3" data-subcategory="setup">
+                            <div class="option-icon">🔧</div>
+                            <h4>Network Setup</h4>
+                            <p>Initial configuration</p>
+                        </div>
+                    </div>
+                    <button class="back-button" data-back="1">← Back</button>
+                </div>
+
+                <!-- Step 2: Software Categories -->
+                <div class="path-step" id="step2-software">
+                    <h3>What software issue are you experiencing?</h3>
+                    <div class="option-grid">
+                        <div class="path-option" data-step="3" data-subcategory="office">
+                            <div class="option-icon">📄</div>
+                            <h4>Office Software</h4>
+                            <p>Word, Excel, email clients</p>
+                        </div>
+                        <div class="path-option" data-step="3" data-subcategory="browser">
+                            <div class="option-icon">🌍</div>
+                            <h4>Web Browsers</h4>
+                            <p>Chrome, Firefox, Safari</p>
+                        </div>
+                        <div class="path-option" data-step="3" data-subcategory="os">
+                            <div class="option-icon">💿</div>
+                            <h4>Operating System</h4>
+                            <p>Windows, Mac, updates</p>
+                        </div>
+                        <div class="path-option" data-step="3" data-subcategory="custom">
+                            <div class="option-icon">🎯</div>
+                            <h4>Business Software</h4>
+                            <p>Custom applications</p>
+                        </div>
+                    </div>
+                    <button class="back-button" data-back="1">← Back</button>
+                </div>
+
+                <!-- Step 2: Security Categories -->
+                <div class="path-step" id="step2-security">
+                    <h3>What security concern do you have?</h3>
+                    <div class="option-grid">
+                        <div class="path-option" data-step="3" data-subcategory="virus">
+                            <div class="option-icon">🦠</div>
+                            <h4>Virus/Malware</h4>
+                            <p>Suspected infection</p>
+                        </div>
+                        <div class="path-option" data-step="3" data-subcategory="password">
+                            <div class="option-icon">🔑</div>
+                            <h4>Password Issues</h4>
+                            <p>Forgotten, compromised</p>
+                        </div>
+                        <div class="path-option" data-step="3" data-subcategory="backup">
+                            <div class="option-icon">💾</div>
+                            <h4>Data Backup</h4>
+                            <p>Protecting your files</p>
+                        </div>
+                        <div class="path-option" data-step="3" data-subcategory="breach">
+                            <div class="option-icon">🚨</div>
+                            <h4>Security Breach</h4>
+                            <p>Urgent security issues</p>
+                        </div>
+                    </div>
+                    <button class="back-button" data-back="1">← Back</button>
+                </div>
+
+                <!-- Step 3: Final Recommendations -->
+                <div class="path-step" id="step3">
+                    <h3>Here's how we can help you:</h3>
+                    <div class="recommendation-container">
+                        <div class="recommendation-card">
+                            <h4>Recommended Solution</h4>
+                            <p id="recommendationText">Based on your selection, here's what we recommend...</p>
+                            <div class="action-buttons">
+                                <a href="#" class="primary-btn" id="supportLink">Get Support Now</a>
+                                <a href="#" class="secondary-btn" id="resourceLink">View Resources</a>
+                            </div>
+                        </div>
+                    </div>
+                    <button class="back-button" id="finalBack">← Back</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Service Cards Section -->
+        <section class="services">
+            <div class="service-card">
+                <div class="service-icon">🛠️</div>
+                <h3>IT Support & Maintenance</h3>
+                <p>24/7 technical support and proactive maintenance to keep your systems running smoothly and efficiently.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">☁️</div>
+                <h3>Cloud Solutions</h3>
+                <p>Scalable cloud infrastructure and migration services to modernize your business operations.</p>
+            </div>
+            
+            <div class="service-card">
+                <div class="service-icon">🔒</div>
+                <h3>Cybersecurity</h3>
+                <p>Comprehensive security solutions to protect your data and systems from evolving threats.</p>
+            </div>
+        </section>
     </main>
 
     <!-- About Section -->
