@@ -582,7 +582,7 @@ body {
     }
 
     .help-path {
-        padding: 1.5rem 3%;
+        padding: 1.5rem 0;
         margin: 0 -1rem 3rem -1rem;
         width: calc(100% + 2rem);
         border-radius: 0;
@@ -594,6 +594,11 @@ body {
 
     .path-step h3 {
         font-size: 1.5rem;
+    }
+    
+    .option-grid {
+        width: 100%;
+        padding: 0 1rem;
     }
 
     .back-button,
@@ -610,11 +615,12 @@ body {
     }
 
     .path-option {
-        padding: 1rem 0.7rem;
+        padding: 1.5rem;
         font-size: 1rem;
-        margin: 0 0.2rem;
+        margin: 0;
         min-height: 70px;
         box-shadow: 0 3px 12px rgba(220, 20, 60, 0.08);
+        width: 100%;
     }
 
     .option-icon {
