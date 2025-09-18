@@ -131,6 +131,7 @@ body {
     cursor: pointer;
     flex-direction: column;
     padding: 5px;
+    z-index: 1001;
 }
 
 .bar {
@@ -517,29 +518,38 @@ body {
 /* Responsive Design */
 @media (max-width: 768px) {
     .hamburger {
-        display: flex;
+        display: flex !important;
     }
 
     .nav-menu {
-        position: fixed;
-        left: -100%;
-        top: 80px;
+        position: absolute;
+        left: 0;
+        top: -200%;
         flex-direction: column;
         background-color: white;
         width: 100%;
         text-align: center;
-        transition: 0.3s;
+        transition: all 0.4s ease;
         box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
-        padding: 2rem 0;
-        gap: 1rem;
+        padding: 1.5rem 0;
+        gap: 0.5rem;
     }
 
     .nav-menu.active {
-        left: 0;
+        top: 100%;
     }
 
     .nav-item {
         margin: 0;
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s ease;
+        transition-delay: calc(var(--item-index) * 0.1s);
+    }
+
+    .nav-menu.active .nav-item {
+        opacity: 1;
+        transform: translateY(0);
     }
 
     .dropdown-content {
