@@ -235,7 +235,6 @@ body {
 .path-container {
     position: relative;
     min-height: 400px;
-
 }
 
 .path-step {
@@ -393,6 +392,12 @@ body {
     }
 }
 
+.sectionTitle {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 2rem;
+    color: #333;
+}
 .services {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -408,12 +413,6 @@ body {
     text-align: center;
     transition: all 0.3s ease;
     border: 2px solid transparent;
-}
-
-.service-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-    border-color: #dc143c;
 }
 
 .service-icon {
