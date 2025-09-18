@@ -34,12 +34,22 @@ body {
     padding: 1rem 0;
 }
 
+/* Common transitions */
+.logo,
+.nav-link,
+.dropdown-content,
+.path-option,
+.back-button,
+.primary-btn,
+.secondary-btn {
+    transition: all 0.3s ease;
+}
+
 .logo {
     font-size: 1.8rem;
     font-weight: bold;
     color: #dc143c;
     text-decoration: none;
-    transition: color 0.3s ease;
 }
 
 .logo:hover {
@@ -63,7 +73,6 @@ body {
     font-weight: 500;
     padding: 0.5rem 1rem;
     border-radius: 5px;
-    transition: all 0.3s ease;
     display: block;
 }
 
@@ -89,7 +98,6 @@ body {
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
-    transition: all 0.3s ease;
     z-index: 1001;
     padding: 1rem 0.5rem;
     text-align: center;
@@ -308,7 +316,8 @@ body {
     font-size: 0.95rem;
 }
 
-.back-button {
+.back-button,
+.start-over-button {
     background: #6c757d;
     color: white;
     border: none;
@@ -323,6 +332,17 @@ body {
 .back-button:hover {
     background: #5a6268;
     transform: translateX(-3px);
+}
+
+.start-over-button {
+    background: #dc143c;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+}
+
+.start-over-button:hover {
+    background: #b91c32;
+    transform: translateY(-3px);
 }
 
 .recommendation-container {
@@ -404,40 +424,6 @@ body {
         opacity: 1;
         transform: translateX(0);
     }
-}
-
-.sectionTitle {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-bottom: 2rem;
-    color: #333;
-}
-
-.service-card {
-    background: white;
-    padding: 2rem;
-    border-radius: 15px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.service-icon {
-    font-size: 3rem;
-    color: #dc143c;
-    margin-bottom: 1rem;
-}
-
-.service-card h3 {
-    color: #333;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-.service-card p {
-    color: #666;
-    line-height: 1.6;
 }
 
 /* About Section */

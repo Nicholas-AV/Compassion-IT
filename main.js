@@ -51,12 +51,20 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Enhanced Help Path Functionality
+    // Help Path Constants
+    const STEPS = {
+        MAIN: '1',
+        CATEGORY: '2',
+        SUBCATEGORY: '3',
+        RECOMMENDATION: '4'
+    };
+
+    // Help Path State
     let currentCategory = '';
     let currentSubcategory = '';
     let currentSpecific = '';
 
-    // Enhanced support page mappings with specific issues
+    // Support page mappings
     const supportPages = {
         // Device specific issues
         'device-phone-camera': '/support/phone-camera-repair',
@@ -193,35 +201,60 @@ document.addEventListener('DOMContentLoaded', () => {
         'security-virus': 'Immediate virus and malware removal services with system cleaning and protection setup.'
     };
 
-    // Handle path option clicks
+        // Handle all help path navigation and button clicks
     document.addEventListener('click', (e) => {
-        if (e.target.closest('.path-option')) {
-            const option = e.target.closest('.path-option');
-            const nextStep = option.dataset.step;
-            const category = option.dataset.category;
-            const subcategory = option.dataset.subcategory;
-            const specific = option.dataset.specific;
+        try {
+            // Path option click
+            const pathOption = e.target.closest('.path-option');
+            if (pathOption) {
+                const { category, subcategory, specific } = pathOption.dataset;
 
-            console.log('Clicked option:', { nextStep, category, subcategory, specific });
+                // Reset state for new path selection
+                resetState(category, subcategory, specific);
 
-            if (category) {
-                // Step 1 -> Step 2: Main category selected
-                currentCategory = category;
-                currentSubcategory = '';
-                currentSpecific = '';
-                showStep('2');
-            } else if (subcategory) {
-                // Step 2 -> Step 3: Subcategory selected
-                currentSubcategory = subcategory;
-                currentSpecific = '';
-                showStep('3');
-            } else if (specific) {
-                // Step 3 -> Step 4: Specific issue selected
-                currentSpecific = specific;
-                showRecommendation();
+                if (category) {
+                    showStep(STEPS.CATEGORY);
+                } else if (subcategory) {
+                    showStep(STEPS.SUBCATEGORY);
+                } else if (specific) {
+                    showRecommendation();
+                }
+                return;
             }
+
+            // Back button click
+            const backButton = e.target.closest('.back-button');
+            if (backButton) {
+                const backStep = backButton.dataset.back;
+                if (backStep === STEPS.MAIN || e.target.id === 'startOverBtn') {
+                    resetPath();
+                } else if (backStep === STEPS.CATEGORY) {
+                    resetState(currentCategory, '', '');
+                    showStep(STEPS.CATEGORY);
+                } else if (e.target.id === 'finalBack') {
+                    resetState(currentCategory, currentSubcategory, '');
+                    showStep(STEPS.SUBCATEGORY);
+                }
+                return;
+            }
+
+            // Start Over button click
+            if (e.target.id === 'startOverBtn') {
+                resetPath();
+            }
+        } catch (error) {
+            console.error('Error in help path navigation:', error);
+            // Fallback to main menu on error
+            resetPath();
         }
     });
+
+    // Helper function to reset state
+    function resetState(category = '', subcategory = '', specific = '') {
+        currentCategory = category;
+        currentSubcategory = subcategory;
+        currentSpecific = specific;
+    }
 
     // Handle back button clicks
     document.addEventListener('click', (e) => {
@@ -249,91 +282,94 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     function showStep(stepNumber) {
-        console.log('Showing step:', stepNumber, 'Category:', currentCategory, 'Subcategory:', currentSubcategory);
-        
-        // Hide all steps
-        document.querySelectorAll('.path-step').forEach(step => {
-            step.classList.remove('active');
-        });
+        try {
+            // Hide all steps
+            document.querySelectorAll('.path-step').forEach(step => {
+                step.classList.remove('active');
+            });
 
-        // Show the requested step
-        if (stepNumber === '1') {
-            document.getElementById('step1').classList.add('active');
-        } else if (stepNumber === '2') {
-            const stepId = `step2-${currentCategory}`;
-            const stepElement = document.getElementById(stepId);
+            // Show the requested step
+            let stepElement;
+            switch (stepNumber) {
+                case STEPS.MAIN:
+                    stepElement = document.getElementById('step1');
+                    break;
+                    
+                case STEPS.CATEGORY:
+                    stepElement = document.getElementById(`step2-${currentCategory}`);
+                    if (!stepElement) {
+                        throw new Error(`Category step not found for: ${currentCategory}`);
+                    }
+                    break;
+                    
+                case STEPS.SUBCATEGORY:
+                    stepElement = document.getElementById(`step3-${currentCategory}-${currentSubcategory}`);
+                    if (!stepElement) {
+                        // If subcategory step is missing, go to recommendations
+                        showRecommendation();
+                        return;
+                    }
+                    break;
+                    
+                case STEPS.RECOMMENDATION:
+                    stepElement = document.getElementById('step4');
+                    break;
+                    
+                default:
+                    throw new Error(`Invalid step number: ${stepNumber}`);
+            }
+
             if (stepElement) {
                 stepElement.classList.add('active');
             } else {
-                console.error('Step 2 element not found:', stepId);
-                showStep('1'); // Fallback to step 1
+                throw new Error('Step element not found');
             }
-        } else if (stepNumber === '3') {
-            const stepId = `step3-${currentCategory}-${currentSubcategory}`;
-            const stepElement = document.getElementById(stepId);
-            console.log('Looking for step 3 element:', stepId, 'Found:', !!stepElement);
-            
-            if (stepElement) {
-                stepElement.classList.add('active');
-            } else {
-                console.error('Step 3 element not found:', stepId);
-                // If we can't find the specific step 3, go directly to recommendations
-                showRecommendation();
-            }
-        } else if (stepNumber === '4') {
-            document.getElementById('step4').classList.add('active');
+        } catch (error) {
+            console.error('Error showing step:', error);
+            // Fallback to main menu on error
+            resetPath();
         }
     }
 
     function showRecommendation() {
-        let key;
-        
-        // Build the key based on available information
-        if (currentSpecific) {
-            key = `${currentCategory}-${currentSubcategory}-${currentSpecific}`;
-        } else {
-            key = `${currentCategory}-${currentSubcategory}`;
+        try {
+            // Build the key based on available information
+            const key = currentSpecific ? 
+                `${currentCategory}-${currentSubcategory}-${currentSpecific}` : 
+                `${currentCategory}-${currentSubcategory}`;
+            
+            // Get recommendation data with fallbacks
+            const recommendationText = recommendations[key] || 
+                recommendations[`${currentCategory}-${currentSubcategory}`] || 
+                'We can help you resolve this issue with our expert support services.';
+            
+            const supportLink = supportPages[key] || 
+                supportPages[`${currentCategory}-${currentSubcategory}`] || 
+                '#contact';
+                
+            const resourceLink = resourcePages[key] || 
+                resourcePages[`${currentCategory}-${currentSubcategory}`] || 
+                '#';
+
+            // Update the UI elements
+            document.getElementById('recommendationText').textContent = recommendationText;
+            document.getElementById('supportLink').href = supportLink;
+            document.getElementById('resourceLink').href = resourceLink;
+            
+            // Show the recommendation step
+            showStep(STEPS.RECOMMENDATION);
+        } catch (error) {
+            console.error('Error showing recommendation:', error);
+            resetPath();
         }
-        
-        console.log('Showing recommendation for key:', key);
-        
-        // Update recommendation text
-        const recommendationText = 
-            recommendations[key] || 
-            recommendations[`${currentCategory}-${currentSubcategory}`] || 
-            'We can help you resolve this issue with our expert support services.';
-        
-        document.getElementById('recommendationText').textContent = recommendationText;
-        
-        // Update support link
-        const supportLink = 
-            supportPages[key] || 
-            supportPages[`${currentCategory}-${currentSubcategory}`] || 
-            '#contact';
-            
-        document.getElementById('supportLink').href = supportLink;
-        
-        // Update resource link
-        const resourceLink = 
-            resourcePages[key] || 
-            resourcePages[`${currentCategory}-${currentSubcategory}`] || 
-            '#';
-            
-        document.getElementById('resourceLink').href = resourceLink;
-        
-        // Show step 4 (recommendations)
-        showStep('4');
     }
 
     // Reset path functionality
     function resetPath() {
-        currentCategory = '';
-        currentSubcategory = '';
-        currentSpecific = '';
-        showStep('1');
+        resetState();
+        showStep(STEPS.MAIN);
     }
 
     // Initialize the path
-    console.log('Initializing help path');
-    showStep('1');
+    resetPath();
 });
