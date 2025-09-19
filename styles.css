@@ -89,6 +89,20 @@ body {
     position: relative;
 }
 
+.dropdown .nav-link::after {
+    content: '▾';
+    display: inline-block;
+    margin-left: 0.4rem;
+    transition: transform 0.3s ease;
+    font-size: 0.9em;
+    position: relative;
+    top: -1px;
+}
+
+.dropdown:hover .nav-link::after {
+    transform: rotate(180deg);
+}
+
 .dropdown-content {
     position: absolute;
     top: 100%;
