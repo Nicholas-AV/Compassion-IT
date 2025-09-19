@@ -322,6 +322,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (stepElement) {
                 stepElement.classList.add('active');
+                
+                // Only scroll if user clicked a path option (not on page load or back button)
+                const wasClicked = event && (event.type === 'click');
+                if (wasClicked) {
+                    const heading = stepElement.querySelector('h3');
+                    if (heading) {
+                        const navbar = document.querySelector('.navbar');
+                        const navbarHeight = navbar ? navbar.offsetHeight : 0;
+                        const elementPosition = heading.getBoundingClientRect().top + window.pageYOffset;
+                        
+                        window.scrollTo({
+                            top: elementPosition - navbarHeight - 20,
+                            behavior: 'instant' // Changed from 'smooth' to 'instant'
+                        });
+                    }
+                }
             } else {
                 throw new Error('Step element not found');
             }

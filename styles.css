@@ -35,14 +35,16 @@ body {
 }
 
 /* Common transitions */
-.logo,
-.nav-link,
-.dropdown-content,
-.path-option,
-.back-button,
-.primary-btn,
-.secondary-btn {
-    transition: all 0.3s ease;
+@media (prefers-reduced-motion: no-preference) {
+    .logo,
+    .nav-link,
+    .dropdown-content,
+    .path-option:not(.active),  /* Only animate non-active options */
+    .back-button,
+    .primary-btn,
+    .secondary-btn {
+        transition: all 0.2s ease;  /* Reduced duration */
+    }
 }
 
 .logo {
