@@ -207,16 +207,17 @@ document.addEventListener('DOMContentLoaded', () => {
             // Path option click
             const pathOption = e.target.closest('.path-option');
             if (pathOption) {
-                const { category, subcategory, specific } = pathOption.dataset;
+                const { step, category, subcategory, specific } = pathOption.dataset;
 
-                // Reset state for new path selection
-                resetState(category, subcategory, specific);
-
+                // Update state based on what was clicked
                 if (category) {
+                    resetState(category, '', '');
                     showStep(STEPS.CATEGORY);
                 } else if (subcategory) {
+                    currentSubcategory = subcategory;
                     showStep(STEPS.SUBCATEGORY);
-                } else if (specific) {
+                } else if (specific && step === STEPS.RECOMMENDATION) {
+                    currentSpecific = specific;
                     showRecommendation();
                 }
                 return;
@@ -305,9 +306,9 @@ document.addEventListener('DOMContentLoaded', () => {
                 case STEPS.SUBCATEGORY:
                     stepElement = document.getElementById(`step3-${currentCategory}-${currentSubcategory}`);
                     if (!stepElement) {
-                        // If subcategory step is missing, go to recommendations
-                        showRecommendation();
-                        return;
+                        console.error(`Step 3 not found for ${currentCategory}-${currentSubcategory}`);
+                        // Stay on current step instead of jumping to recommendation
+                        stepElement = document.getElementById(`step2-${currentCategory}`);
                     }
                     break;
                     
